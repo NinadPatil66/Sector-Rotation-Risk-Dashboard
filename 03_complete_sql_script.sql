@@ -57,6 +57,7 @@ WITH lagged AS (
         volume
     FROM sector_prices
 )
+
 -- Step 2: now that prev_adj_close exists as a real column (via the CTE),
 -- calculate the daily return: (today - yesterday) / yesterday
 SELECT
@@ -88,7 +89,7 @@ FROM lagged;
 
 DROP VIEW IF EXISTS vw_cumulative_return;
 
-CREATE VIEW vw_cumulative_return AS
+CREATE TABLE fact_cumulative_return AS
 SELECT
     date,
     ticker,
